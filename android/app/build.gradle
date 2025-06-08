@@ -1,11 +1,12 @@
 plugins {
-    id 'com.android.application'              // 👉 PAS de version ici !
-    id 'org.jetbrains.kotlin.android'         // idem, pas de version
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
     id 'dev.flutter.flutter-gradle-plugin'
 }
 
-// Kotlin utilisé dans les dépendances
-ext.kotlinVer = '1.9.22'
+buildscript {
+    ext.kotlin_version = '1.9.22'  // Add this section
+}
 
 android {
     namespace 'com.example.quotes_app'
@@ -27,9 +28,10 @@ android {
 
     buildTypes {
         release {
-            signingConfig signingConfigs.debug // remplacez par votre config release
-            minifyEnabled false
-            shrinkResources false // évite l'erreur "Removing unused resources"
+            signingConfig signingConfigs.debug
+            minifyEnabled true  // Change to true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
