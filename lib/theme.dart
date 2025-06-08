@@ -1,6 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-// Extension pour les espacements cohérents
+/// Collection de thèmes utilisés dans l'application.
+class AppTheme {
+  static final _seed = Colors.blue;
+  static TextTheme _font(TextTheme base) => GoogleFonts.poppinsTextTheme(base);
+
+  static ThemeData light() => ThemeData(
+        useMaterial3: true,
+        colorSchemeSeed: _seed,
+        scaffoldBackgroundColor: const Color(0xFFF7F8FC),
+        textTheme: _font(Typography.blackCupertino),
+      );
+
+  static ThemeData dark() => ThemeData(
+        brightness: Brightness.dark,
+        useMaterial3: true,
+        colorSchemeSeed: _seed,
+        scaffoldBackgroundColor: const Color(0xFF121212),
+        textTheme: _font(Typography.whiteCupertino),
+      );
+}
+
+// Extensions utilitaires -----------------------------------------------------
+
+/// Espacements et tailles cohérents dans toute l'UI.
 extension SpacingExtension on BuildContext {
   EdgeInsets get smallPadding => const EdgeInsets.all(8);
   EdgeInsets get mediumPadding => const EdgeInsets.all(16);
@@ -15,7 +39,7 @@ extension SpacingExtension on BuildContext {
   double get iconSizeLarge => 48;
 }
 
-// Extension pour les animations
+/// Durées et courbes d'animation courantes.
 extension AnimationExtension on BuildContext {
   Duration get shortAnimation => const Duration(milliseconds: 200);
   Duration get mediumAnimation => const Duration(milliseconds: 350);
