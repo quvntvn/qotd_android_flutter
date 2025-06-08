@@ -108,8 +108,8 @@ class NotifHelper {
       await prefs.setString(
           'time', '${hour.toString().padLeft(2, '0')}:$minute');
     } catch (e, stack) {
-      print('Erreur de planification: $e');
-      print(stack);
+      debugPrint('Erreur de planification: $e');
+      debugPrint(stack.toString());
       // Fallback: Réessayer avec des paramètres simplifiés
       await _scheduleFallback(hour, minute);
     }
